@@ -3,15 +3,12 @@
 
 ## Introduction
 
-This sample application demonstrates how Contact Pro APIs can be used from a browser with SSO.
+This sample application demonstrates how Contact Pro APIs can be used from a browser with SSO based strong authentication. The demo application should not be used as such for productive usage, it is merely a technology demo and material for learning.
 
 Tasks demonstrated by this demo:
 
-1. How to authenticate user using SSO
-2. How to acquire JWT token to authorize API requests
-3. How to call APIs
-
-This demo application presents an example of how a browser application can use Contact Pro APIs with SSO based strong authentication. The demo application should not be used as such for productive usage, it is merely a technology demo and material for learning.
+1. How to acquire a JWT token securely from Contact Pro authorization service
+2. How to call Contact Pro APIs with the token
 
 ## Table of contents
 
@@ -34,11 +31,9 @@ This demo application presents an example of how a browser application can use C
 
 ## Skills required
 
-To understand how the code accomplishes the tasks, some skills single-page browser application technologies are required.
+To understand how the code accomplishes the tasks, some skills on single-page browser application technologies are required.
 
-This application uses the [Svelte](https://svelte.dev/) UI framework but the same principles can be applied to other frameworks.
-
-At the moment the application is still using Svelte version 4, and not the fairly new version 5.
+This application uses the [Svelte](https://svelte.dev/) UI framework. The same principles can be applied to other UI frameworks. At the moment the application is still using Svelte version 4, and not the fairly new version 5.
 
 This application uses [Vite](https://vite.dev/) as a build tool.
 
@@ -53,11 +48,11 @@ Application's complexity is around two topics:
 
 The application uses [OAuth 2 Authorization Code Grant](https://www.rfc-editor.org/rfc/rfc6749#section-4.1) with [RFC7636: Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636) protocol to securely retrieve authorization grant, and to exchange it to an id token. The id token is conveyed with each request to Contact Pro API, which can then authenticate and authorize each request separately. Contact Pro API side does not need to persist any session for the requester, the session is in the browser instead.
 
-The application uses browser's [session storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) to track state across page reloads.
+The application uses browser's [session storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) to maintain state across page reloads.
 
 ### HTTP request flow
 
-The basic flow of interactions between components of he solution is illustrated below:
+The basic flow of interactions between related network components is illustrated below:
 
 ![High level flow - existing SSO session](doc/img/high-level-flow.png)
 
