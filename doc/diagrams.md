@@ -5,9 +5,13 @@ title High level flow
 autonumber
 actor user
 participant "Browser" as browser
+participant "Web Server" as site
 participant "Identity Provider" as idp
 participant "Authorization Service" as authsrv
 participant "API" as api
+
+user -> browser : Open app url
+browser -> site : Load app page
 
 user -> browser : Click "Login"
 
@@ -22,6 +26,7 @@ alt Not logged in with IdP
 end
 
 idp --> browser : Redirect to application
+browser -> site : Load app page
 browser -> authsrv : Continue OAuth2 authorization code flow
 authsrv --> browser : Tokens
 |||
